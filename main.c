@@ -11,9 +11,20 @@
    #use fast_io(c)
 #endif
 
+int contador=1;
+#INT_TIMER0 
+void TIMER0(){
+contador++;
+set_timer0(15536);
+}
+
 void main (void){
    setup_oscillator(OSC_16MHZ);
    while(1){
-      set_tris_a(0x02);
+      set_tris_a(0x00);
+      set_tris_b(0x00);
+      set_tris_d(0x00);
+      setup_timer_0(RTCC_INTERNAL | RTCC_DIV_8 );
+      enable_interrupts(INT_TIMER0);
    }
 }
